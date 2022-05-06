@@ -1,5 +1,6 @@
 ---
 - name: Install python packages for fan control.
+  become: yes
   ansible.builtin.apt:
     name:
       - python3-psutil
@@ -8,6 +9,7 @@
     state: present
 
 - name: Clone a github repository
+  become: yes
   ansible.builtin.git:
     repo: https://github.com/stkr22/raspberry-pi-pwm-fan-control.git
     dest: /opt/pwm-fan-control
@@ -16,6 +18,7 @@
     force: yes
 
 - name: Add Python pwm fan control service.
+  become: yes
   ansible.builtin.template:
     src: lgpio-fan-control.service.j2
     dest: /etc/systemd/system/lgpio-fan-control.service
@@ -24,6 +27,7 @@
     mode: 0644
 
 - name: Enable service python pwm fan control and start it.
+  become: yes
   ansible.builtin.systemd:
     name: lgpio-fan-control
     state: started
