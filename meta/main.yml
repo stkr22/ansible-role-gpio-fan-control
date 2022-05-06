@@ -1,0 +1,21 @@
+galaxy_info:
+  author: 'stkr22'
+  role_name: 'gpio_fan_control'
+  description: Use this role to set up pwm fan control on raspberry pis.
+  company: your company (optional)
+  license: 'GNU General Public License v3'
+  min_ansible_version: '2.0'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+        - jammy
+  galaxy_tags:
+    - gpio
+    - raspberrypi
+    - fan
+    - temperature
+    - pwm
+
+dependencies: []

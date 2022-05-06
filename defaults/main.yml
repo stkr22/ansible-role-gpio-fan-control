@@ -1,0 +1,9 @@
+---
+fan_control_config:
+    min_temp: 40
+    max_temp: 70
+    fan_low: 20
+    fan_high: 100
+    wait_time: 10
+    pwm_gpio: 18
+    pwm_freq: 10000

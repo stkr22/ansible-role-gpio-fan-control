@@ -1,0 +1,20 @@
+
+[Unit]
+Description=raspberry pwm fan control
+After=network-online.target
+Wants=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=10s
+ExecStart=/usr/bin/python3 -u /opt/pwm-fan-control/fan.py \
+                              --min-temp={{ fan_control_config.min_temp }} \
+                              --max-temp={{ fan_control_config.max_temp }} \
+                              --fan-low={{ fan_control_config.fan_low }} \
+                              --fan-high={{ fan_control_config.fan_high }} \
+                              --wait-time={{ fan_control_config.wait_time }} \
+                              --pwm-gpio={{ fan_control_config.pwm_gpio }} \
+                              --pwm-freq={{ fan_control_config.pwm_freq }}
+
+[Install]
+WantedBy=multi-user.target
