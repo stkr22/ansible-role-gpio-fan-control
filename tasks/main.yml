@@ -17,13 +17,6 @@
     version: main
     force: yes
 
-- name: Install pwm fan cronjob.
-  become: yes
-  ansible.builtin.cron:
-    name: "adjust fan"
-    job: "/usr/bin/python3 -u /opt/pwm-fan-control/fan.py --min-temp={{ fan_control_config.min_temp }} --max-temp={{ fan_control_config.max_temp }} --fan-low={{ fan_control_config.fan_low }} --fan-high={{ fan_control_config.fan_high }} --wait-time=-1 --pwm-gpio={{ fan_control_config.pwm_gpio }} --pwm-freq={{ fan_control_config.pwm_freq }}"
-  when: fan_script_mode 
-
 - name: Add Python pwm fan control service.
   become: yes
   ansible.builtin.template:
@@ -32,7 +25,6 @@
     owner: root
     group: root
     mode: 0644
-  when: not fan_script_mode
 
 - name: Enable service python pwm fan control and start it.
   become: yes
@@ -41,4 +33,3 @@
     state: started
     enabled: yes
     daemon_reload: yes
-  when: not fan_script_mode

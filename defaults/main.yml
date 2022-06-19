@@ -7,4 +7,3 @@ fan_control_config:
     wait_time: 10
     pwm_gpio: 18
     pwm_freq: 10000
-fan_script_mode: true
